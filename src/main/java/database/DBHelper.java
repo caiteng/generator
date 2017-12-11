@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import config.Config;
 /**
- * CREATED_BY caiT
+ * @author cait
  */
 public class DBHelper {
 

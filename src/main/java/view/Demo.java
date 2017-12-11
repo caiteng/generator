@@ -129,10 +129,10 @@ public class Demo extends JFrame {
         }
     }
 
-//    public static void main(String[] args) {
-//        Demo frame = new Demo();
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
+    public static void main(String[] args) {
+        Demo frame = new Demo();
+        frame.pack();
+        frame.setVisible(true);
+    }
 }
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CREATED_BY caiT
+ * @author cait
  */
 public class Link {
 

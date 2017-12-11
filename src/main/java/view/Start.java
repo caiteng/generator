@@ -18,7 +18,8 @@ import database.Link;
 
 /**
  * 界面
- * CREATED_BY caiT
+ *
+ * @author cait
  */
 public class Start extends JFrame {
     private Button jb, sel;
@@ -31,13 +32,13 @@ public class Start extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new GridLayout(3, 1, 5, 5));
 
-        JPanel driver_pane = new JPanel();
-        JLabel driver_label = new JLabel("驱            动：");
+        JPanel driverPane = new JPanel();
+        JLabel driverLabel = new JLabel("驱            动：");
         driver = new JTextField(Config.DRIVER);
         driver.setColumns(18);
-        driver_pane.add(driver_label);
-        driver_pane.add(driver);
-        contentPane.add(driver_pane);
+        driverPane.add(driverLabel);
+        driverPane.add(driver);
+        contentPane.add(driverPane);
 
         JPanel pane2 = new JPanel();
         contentPane.add(pane2);
@@ -124,7 +125,10 @@ public class Start extends JFrame {
                 chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int result = chooser.showOpenDialog(sel);
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    String filepath = chooser.getSelectedFile().getAbsolutePath();// 获取绝对路径
+                    /**
+                     *获取绝对路径
+                     */
+                    String filepath = chooser.getSelectedFile().getAbsolutePath();
                     path.setText(filepath);
                 }
             }

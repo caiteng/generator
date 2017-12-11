@@ -1,4 +1,4 @@
-package Io;
+package io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 /**
- * CREATED_BY caiT
+ * @author cait
  */
 public class IoFile {
 	public static boolean createFile(String filePath, String filecontent) {
@@ -48,7 +48,10 @@ public class IoFile {
 	 */
 	public static boolean writeFileContent(String filepath, String newstr) throws IOException {
 		Boolean bool = false;
-		String filein = newstr + "\r\n";// 新写入的行，换行
+		/**
+		 * 新写入的行，换行
+		 */
+		String fileIn = newstr + "\r\n";
 		String temp = "";
 
 		FileInputStream fis = null;
@@ -57,7 +60,10 @@ public class IoFile {
 		FileOutputStream fos = null;
 		PrintWriter pw = null;
 		try {
-			File file = new File(filepath);// 文件路径(包括文件名称)
+			/**
+			 * 文件路径(包括文件名称)
+			 */
+			File file = new File(filepath);
 			// 将文件读入输入流
 			fis = new FileInputStream(file);
 			isr = new InputStreamReader(fis);
@@ -67,7 +73,7 @@ public class IoFile {
 			buffer.append(temp);
 			// 行与行之间的分隔符 相当于“\n”
 			buffer = buffer.append(System.getProperty("line.separator"));
-			buffer.append(filein);
+			buffer.append(fileIn);
 			fos = new FileOutputStream(file);
 			pw = new PrintWriter(fos);
 			pw.write(buffer.toString().toCharArray());
