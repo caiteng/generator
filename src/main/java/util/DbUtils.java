@@ -35,12 +35,14 @@ public class DbUtils {
 	}
 
 	public void writeProperties(String file) {
-		if (StringUtils.isBlank(file))
+		if (StringUtils.isBlank(file)) {
 			return;
+		}
 		try {
 			File f = new File(file);
-			if (!f.exists())
+			if (!f.exists()) {
 				f.createNewFile();
+			}
 			Properties prop = new Properties();
 			InputStream is = new FileInputStream(f);
 			prop.load(is);
@@ -63,8 +65,9 @@ public class DbUtils {
 		con = DriverManager.getConnection(URL, USERNAME, PASSWOED);
 		if (con != null) {
 			try {
-				if (con != null)
+				if (con != null) {
 					con.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -84,14 +87,17 @@ public class DbUtils {
 		stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("show tables");
 		List tableNames = new ArrayList();
-		for (; rs.next(); tableNames.add(rs.getString(1)))
+		for (; rs.next(); tableNames.add(rs.getString(1))) {
 			;
+		}
 		list = tableNames;
 		try {
-			if (stmt != null)
+			if (stmt != null) {
 				stmt.close();
-			if (con != null)
+			}
+			if (con != null) {
 				con.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return new ArrayList();
@@ -103,8 +109,6 @@ public class DbUtils {
 		Connection con;
 		Statement stmt;
 		LinkedHashMap result[];
-		con = null;
-		stmt = null;
 		result = new LinkedHashMap[2];
 		LinkedHashMap alinkedhashmap[];
 		Class.forName(DRIVER);
@@ -115,21 +119,25 @@ public class DbUtils {
 		LinkedHashMap comments = new LinkedHashMap();
 		List prilist = new ArrayList();
 		for (; rs.next(); comments.put(rs.getString("Field"), rs.getString("Comment"))) {
-			if (StringUtils.isBlank((String) fields.get("PrimaryKey")) && "PRI".equals(rs.getString("Key")))
+			if (StringUtils.isBlank((String) fields.get("PrimaryKey")) && "PRI".equals(rs.getString("Key"))) {
 				prilist.add(rs.getString("Field"));
+			}
 			fields.put(rs.getString("Field"), rs.getString("Type"));
 		}
 
-		if (prilist.size() > 0)
+		if (prilist.size() > 0) {
 			fields.put("PrimaryKey", (String) prilist.get(0));
+		}
 		result[0] = fields;
 		result[1] = comments;
 		alinkedhashmap = result;
 		try {
-			if (stmt != null)
+			if (stmt != null) {
 				stmt.close();
-			if (con != null)
+			}
+			if (con != null) {
 				con.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -151,47 +159,57 @@ public class DbUtils {
 		stmt = con.createStatement();
 		check = stmt
 				.executeQuery((new StringBuilder("select count(*) from sys_common_menu where text = '")).append(className).append("Menu' and iconCls = '").append(className).append("'").toString());
-		while (check.next())
+		while (check.next()) {
 			if (check.getInt(1) > 0) {
 				try {
-					if (stmt != null)
+					if (stmt != null) {
 						stmt.close();
-					if (con != null)
+					}
+					if (con != null) {
 						con.close();
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 				return;
 			}
+		}
 		stmt.executeUpdate(menuSql, 1);
 		ResultSet rs = stmt.getGeneratedKeys();
 		String menuId;
-		for (menuId = ""; rs.next(); menuId = rs.getString(1))
+		for (menuId = ""; rs.next(); menuId = rs.getString(1)) {
 			;
+		}
 		String roleMenuSql = (new StringBuilder("INSERT INTO `sys_common_role_menu` (`roleId`,`menuId`) VALUES (1,")).append(menuId).append(");").toString();
 		stmt.executeUpdate(roleMenuSql);
 
 		try {
-			if (stmt != null)
+			if (stmt != null) {
 				stmt.close();
-			if (con != null)
+			}
+			if (con != null) {
 				con.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		try {
-			if (stmt != null)
+			if (stmt != null) {
 				stmt.close();
-			if (con != null)
+			}
+			if (con != null) {
 				con.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		try {
-			if (stmt != null)
+			if (stmt != null) {
 				stmt.close();
-			if (con != null)
+			}
+			if (con != null) {
 				con.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
