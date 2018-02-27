@@ -7,21 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import util.GenerateAllFromSQL;
 
+/**
+ * @author cait
+ */
 public class TableFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JTable table;
-	private Button btn;
+	private JButton btn;
 
 	public TableFrame(String frameName, List<String> list) {
 		InitialComponent(list);
@@ -62,11 +61,11 @@ public class TableFrame extends JFrame {
 		table.setSize(panel.getWidth(), panel.getHeight() - 80);
 		table.setLocation(0, 0);
 
-		btn = new Button("make...");
+		btn = new JButton("生成文件...");
 		btn.setSize(80, 40);
 		btn.setLocation((panel.getWidth()) / 2 - 40, panel.getHeight() - 80);
 
-		// 点按钮
+		// 按钮
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List list = new ArrayList();
@@ -92,6 +91,8 @@ public class TableFrame extends JFrame {
 		panel.add(table);
 		panel.add(btn);
 		this.add(panel);
+		//Jbutton偶尔无法渲染，加上刷新保证按钮一定出现
+		SwingUtilities.updateComponentTreeUI(this);
 
 	}
 

@@ -5,12 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import config.Config;
@@ -22,7 +17,7 @@ import database.Link;
  * @author cait
  */
 public class Start extends JFrame {
-    private Button jb, sel;
+    public JButton jb, sel;
     public JTextField driver, url, username, password, tableName, path;
 
     public Start() {
@@ -84,11 +79,13 @@ public class Start extends JFrame {
         setTitle("配置");
         setVisible(true);
         setLayout(new FlowLayout());
-        sel = new Button("select...");
+        sel = new JButton("文件生成目标地址...");
         add(sel);
-        jb = new Button("link");
+        jb = new JButton("连接数据库");
         add(jb);
         this.addListener();
+        //Jbutton偶尔无法渲染，加上刷新保证按钮一定出现
+        SwingUtilities.updateComponentTreeUI(this);
     }
 
     /**

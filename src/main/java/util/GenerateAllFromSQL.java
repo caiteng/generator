@@ -8,9 +8,6 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.*;
 
-/**
- * @author cait
- */
 public class GenerateAllFromSQL {
     private static boolean isRelTable = false;
 
